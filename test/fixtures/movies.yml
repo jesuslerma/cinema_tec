@@ -1,9 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+batman_vs_superman:
+  name: Batman vs Superman
 
-one:
-  name: MyString
-  duration: 1
-
-two:
-  name: MyString
-  duration: 1
+fuera_del_cielo:
+  name: Fuera Del Cielo
