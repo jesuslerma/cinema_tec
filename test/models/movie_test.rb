@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class MovieTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test 'movie without name must be invalid' do
+    m = Movie.new name:nil
+    assert_not m.valid?
+  end
 end
