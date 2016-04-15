@@ -9,18 +9,21 @@ class MovieTest < ActiveSupport::TestCase
     @movie = movies(:batman_vs_superman)
   end
   test 'movie without name must be invalid' do
-    m = movies(:batman_vs_superman)
-    m.name = nil
-    assert_not m.valid?, 'A new movie must have a name'
+    @movie.name = nil
+    assert_not @movie.valid?, 'A new movie must have a name'
   end
 
   test 'movie with repeated name must be invalid' do
-    Movie.create(name: "Piratas de Silicon Valley")
-    m = Movie.new(name:"Piratas de Silicon Valley")
+    m = Movie.new(name: @movie.name)
     assert_not m.valid?, 'Movie name can\'t be repeated'
   end
 
   test "movie has rankings" do    
     assert_includes @movie.ranking, rankings(:one), "Batman vs superman movie should have one ranking"
+  end
+
+  test 'deleting ranks on cascade' do
+    @movie.destroy
+    assert_empty Ranking.where(movie: @movie.id)
   end
 end
